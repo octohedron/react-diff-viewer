@@ -1,14 +1,13 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Css = require('mini-css-extract-plugin');
-const FavIconsWebpackPlugin = require('favicons-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Css = require('mini-css-extract-plugin')
+const FavIconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   entry: {
     main: './examples/src/index.tsx',
   },
-  mode: process.env.NODE_ENV === 'production' ?
-    'production' : 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   resolve: {
     extensions: ['.jsx', '.tsx', '.ts', '.scss', '.css', '.js'],
   },
@@ -22,23 +21,22 @@ module.exports = {
     hot: true,
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.tsx?$/,
-        use: [{
-          loader: 'ts-loader',
-          options: {
-            configFile: 'tsconfig.examples.json',
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: 'tsconfig.examples.json',
+            },
           },
-        }],
+        ],
         exclude: /node_modules/,
       },
       {
         test: /\.s?css$/,
-        use: [
-          Css.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [Css.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.xml|.rjs|.java/,
@@ -59,4 +57,4 @@ module.exports = {
       filename: 'main.css',
     }),
   ],
-};
+}
